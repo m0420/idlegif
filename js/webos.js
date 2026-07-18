@@ -52,5 +52,9 @@ WebOSService.prototype.downloadAndApply = function(gifUrl) {
         return Promise.reject("Invalid or unsafe URL");
     }
     var dest = "/var/lib/webosbrew/idlegif/screensaver.gif";
-    return this.exec('wget -q -O "' + dest + '" "' + gifUrl + '" && sh ' + APP_DIR + "/assets/install.sh");
+    return this.exec('wget -q -O "' + dest + '" "' + gifUrl + '" && sh ' + APP_DIR + "/assets/install.sh gif");
+};
+
+WebOSService.prototype.applyDvd = function() {
+    return this.exec("sh " + APP_DIR + "/assets/install.sh dvd");
 };

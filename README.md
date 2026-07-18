@@ -43,6 +43,7 @@ luna-send -n 1 luna://com.webos.service.applicationManager/launch \
 **Buttons:**
 - **Refresh** — fetch a new set of GIFs from GIPHY
 - **Test** — navigate to the home screen and trigger the screensaver to preview it
+- **DVD Logo** — apply the classic bouncing DVD logo screensaver (no GIF needed)
 - **Uninstall** — remove the screensaver override and boot hook
 
 **Navigation:** arrow keys to move, OK to select.
