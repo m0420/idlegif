@@ -1,4 +1,4 @@
-# Idlegif
+# Idlegif + DVD Screensaver webOS 9 Port
 
 <div align="center">
 <a href="https://github.com/Oted/idlegif/releases/latest"><img src="https://img.shields.io/github/v/release/Oted/idlegif?style=flat-square" alt="Latest release"/></a>
