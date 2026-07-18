@@ -8,7 +8,7 @@ function View() {
     this._nGiphyItems  = 5; // 4 cards + refresh btn (always grid now)
     this._nKeyItems    = 2; // key input + save, or clear btn
     this._nUrlItems    = 2; // url input + download btn
-    this._nActionItems = 2; // test + uninstall
+    this._nActionItems = 3; // test + dvd + uninstall
 
     document.getElementById("btn-download").addEventListener("click", function() {
         var url = document.getElementById("url-input").value.trim();
@@ -16,6 +16,9 @@ function View() {
     });
     document.getElementById("btn-test").addEventListener("click", function() {
         if (self._callbacks.test) self._callbacks.test();
+    });
+    document.getElementById("btn-dvd").addEventListener("click", function() {
+        if (self._callbacks.dvd) self._callbacks.dvd();
     });
     document.getElementById("btn-uninstall").addEventListener("click", function() {
         if (self._callbacks.uninstall) self._callbacks.uninstall();
@@ -32,6 +35,7 @@ View.prototype.onRefresh     = function(fn) { this._callbacks.refresh     = fn; 
 View.prototype.onGifSelect   = function(fn) { this._callbacks.gifSelect   = fn; };
 View.prototype.onUrlDownload = function(fn) { this._callbacks.urlDownload = fn; };
 View.prototype.onTest        = function(fn) { this._callbacks.test        = fn; };
+View.prototype.onDvd         = function(fn) { this._callbacks.dvd         = fn; };
 View.prototype.onUninstall   = function(fn) { this._callbacks.uninstall   = fn; };
 
 // ── GIPHY section ─────────────────────────────────────────────────────────────
@@ -164,6 +168,7 @@ View.prototype._rebuildFocusables = function(giphyItems, keyItems) {
     var urlInput     = document.getElementById("url-input");
     var btnDownload  = document.getElementById("btn-download");
     var btnTest      = document.getElementById("btn-test");
+    var btnDvd       = document.getElementById("btn-dvd");
     var btnUninstall = document.getElementById("btn-uninstall");
 
     keyItems = keyItems || [];
@@ -173,7 +178,7 @@ View.prototype._rebuildFocusables = function(giphyItems, keyItems) {
     // returns fewer cards. Cards are recreated each render, so focus that was on a
     // card (now gone) falls back to the first card.
     var prevEl = this._focusables[this._focusIdx];
-    this._focusables  = giphyItems.concat(keyItems, [urlInput, btnDownload, btnTest, btnUninstall]);
+    this._focusables  = giphyItems.concat(keyItems, [urlInput, btnDownload, btnTest, btnDvd, btnUninstall]);
     this._nGiphyItems = giphyItems.length;
     this._nKeyItems   = keyItems.length;
     var idx = prevEl ? this._focusables.indexOf(prevEl) : -1;

@@ -42,6 +42,13 @@ App.prototype._wireCallbacks = function() {
             .catch(function(e){ self.view.setStatus("Error: " + e, "err"); });
     });
 
+    this.view.onDvd(function() {
+        self.view.setStatus("Applying DVD Logo screensaver…");
+        self.webos.applyDvd()
+            .then(function()  { self.view.setStatus("DVD Logo applied.", "ok"); })
+            .catch(function(e){ self.view.setStatus("Error: " + e, "err"); });
+    });
+
     this.view.onUninstall(function() {
         self.view.setStatus("Uninstalling…");
         self.webos.uninstall()

@@ -11,16 +11,27 @@ MAIN_TARGET="$SCREENSAVER_BASE/qml/main.qml"
 INIT_LINK="/var/lib/webosbrew/init.d/50-idlegif"
 GIF_DIR="/var/lib/webosbrew/idlegif"
 
+# Optional first argument: "gif" (default) or "dvd"
+MODE="${1:-gif}"
+
 mkdir -p "$GIF_DIR"
 
 # webOS 9.x (2022+ OLEDs): deep hierarchy with Clock.qml
 # webOS 5/6 (2020/2021): simple structure with main.qml as entry point
 if [ -f "$CLOCK_TARGET" ]; then
     MOUNT_TARGET="$CLOCK_TARGET"
-    QML_PATH="$APP_DIR/assets/Clock.qml"
+    if [ "$MODE" = "dvd" ]; then
+        QML_PATH="$APP_DIR/assets/dvd-Clock.qml"
+    else
+        QML_PATH="$APP_DIR/assets/Clock.qml"
+    fi
 elif [ -f "$MAIN_TARGET" ]; then
     MOUNT_TARGET="$MAIN_TARGET"
-    QML_PATH="$APP_DIR/assets/screensaver.qml"
+    if [ "$MODE" = "dvd" ]; then
+        QML_PATH="$APP_DIR/assets/dvd-screensaver.qml"
+    else
+        QML_PATH="$APP_DIR/assets/screensaver.qml"
+    fi
 else
     echo "[-] No supported screensaver target found" >&2
     exit 1
