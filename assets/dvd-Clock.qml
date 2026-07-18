@@ -56,11 +56,6 @@ Item {
         width: 320
         height: 163
 
-        // Flatten the coloured rectangle + logo mask into a single cached
-        // texture so the bouncing animation only translates a texture each
-        // frame instead of re-rasterising/blending. Fixes lag on webOS 9.
-        layer.enabled: true
-
         function setRandomColor() {
             var colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff', '#fff'];
             boing.color = colors[(Math.random() * colors.length) | 0];
