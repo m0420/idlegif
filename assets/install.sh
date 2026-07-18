@@ -22,6 +22,10 @@ if [ -f "$CLOCK_TARGET" ]; then
     MOUNT_TARGET="$CLOCK_TARGET"
     if [ "$MODE" = "dvd" ]; then
         QML_PATH="$APP_DIR/assets/dvd-Clock.qml"
+        # webOS 9's QML runtime does not render base64 data: URIs, so the logo
+        # must be served from disk (mirrors the on-disk GIF approach). Copy it
+        # into a location the screensaver process can read.
+        cp "$APP_DIR/assets/dvd-logo.png" "$GIF_DIR/dvd-logo.png"
     else
         QML_PATH="$APP_DIR/assets/Clock.qml"
     fi
